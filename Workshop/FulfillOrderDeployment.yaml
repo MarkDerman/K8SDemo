@@ -1,0 +1,36 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: fulfillorder-deployment
+  labels:
+    app: fulfillorder
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fulfillorder
+  template:
+    metadata:
+      labels:
+        app: fulfillorder
+    spec:
+      containers:
+      - name: fulfillorder
+        image: shanepeckham/fulfillorderack:v5
+        volumeMounts:
+          - mountPath: "/orders"
+            name: storage        
+        ports:
+        - containerPort: 8080
+        env:
+        - name: TEAMNAME
+          value: team10-ct
+        - name: MONGOHOST
+          value: mongodb://Team10:shambles@team10-mongodb/Team10DB
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: team10pvc
+
+
+ 

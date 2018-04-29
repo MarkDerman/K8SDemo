@@ -1,0 +1,29 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: captureorder-deployment
+  labels:
+    app: captureorder
+spec:
+  replicas: 20
+  selector:
+    matchLabels:
+      app: captureorder
+  template:
+    metadata:
+      labels:
+        app: captureorder
+    spec:
+      containers:
+      - name: captureorder
+        image: shanepeckham/captureorderack:v5
+        ports:
+        - containerPort: 8080
+        env:
+        - name: TEAMNAME
+          value: team10-ct
+        - name: MONGOHOST
+          value: mongodb://Team10:shambles@team10-mongodb/Team10DB
+        - name: RABBITMQHOST
+          value: amqp://team10:shambles@team10rabbit-rabbitmq
+  
