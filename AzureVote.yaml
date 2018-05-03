@@ -45,6 +45,11 @@ spec:
         env:
         - name: REDIS
           value: "azure-vote-back"
+      resources:
+        requests:
+          cpu: 250m
+        limits:
+          cpu: 500m
 ---
 apiVersion: v1
 kind: Service
