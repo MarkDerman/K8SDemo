@@ -27,7 +27,7 @@ spec:
     app: azure-vote-back
 ---
 apiVersion: apps/v1beta1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: azure-vote-front
 spec:
@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: azure-vote-front
-        image: microsoft/azure-vote-front:v2
+        image: microsoft/azure-vote-front:v1
         ports:
         - containerPort: 80
         env:
