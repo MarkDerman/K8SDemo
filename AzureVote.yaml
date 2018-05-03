@@ -31,7 +31,7 @@ kind: Deployment
 metadata:
   name: azure-vote-front
 spec:
-  replicas: 7
+  replicas: 1
   template:
     metadata:
       labels:
@@ -45,11 +45,6 @@ spec:
         env:
         - name: REDIS
           value: "azure-vote-back"
-      resources:
-        requests:
-          cpu: 250m
-        limits:
-          cpu: 500m
 ---
 apiVersion: v1
 kind: Service
